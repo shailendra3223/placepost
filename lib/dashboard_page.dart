@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class DashBoardPage extends StatelessWidget {
-  const DashBoardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
