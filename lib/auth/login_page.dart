@@ -29,8 +29,9 @@ class LogInPage extends GetWidget {
                ],
              ),
            ),),
-          Expanded(flex: 2,child: Card(
-            shape: RoundedRectangleBorder(
+          Expanded(flex: 2,
+            child: Card(
+            shape:const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))),
             child: Container(
               width: double.infinity,
@@ -49,7 +50,7 @@ class LogInPage extends GetWidget {
                     child: Container(
                       height: 50,
                       child: TextFormField(
-                        decoration: InputDecoration(
+                        decoration:const InputDecoration(
                           hintText: "+91 8999928828",
                             border: OutlineInputBorder()
                         ),

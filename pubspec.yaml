@@ -64,6 +64,23 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/festival1.png
+    - assets/festival2.png
+    - assets/festival3.png
+    - assets/festival4.png
+    - assets/festival5.png
+    - assets/festival6.png
+    - assets/festival7.png
+    - assets/motivational/motivational1.png
+    - assets/motivational/motivational2.png
+    - assets/motivational/motivational3.png
+    - assets/motivational/motivational4.png
+    - assets/motivational/motivational5.png
+    - assets/motivational/motivational6.png
+    - assets/motivational/motivational7.png
+    - assets/motivational/motivational8.png
+    - assets/motivational/motivational9.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
