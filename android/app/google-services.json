@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "707304093245",
+    "project_id": "digital-marketing-97f39",
+    "storage_bucket": "digital-marketing-97f39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707304093245:android:e541628269ede390241c54",
+        "android_client_info": {
+          "package_name": "com.example.digitalmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707304093245-1is3d9tcthqj2tg8cjttid48bospf5rd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.digitalmaster",
+            "certificate_hash": "878d089c7f540c024ff1e064ec10ac76bce80d41"
+          }
+        },
+        {
+          "client_id": "707304093245-cqqp1p3mr88jku6bgm3rf4cah5vao0m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaUscbsNS3P-A_gWsTPCLxY5JqI1L_aNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707304093245-cqqp1p3mr88jku6bgm3rf4cah5vao0m7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
