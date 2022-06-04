@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class DashBoardDetailsPage extends StatelessWidget {
-  const DashBoardDetailsPage({Key? key}) : super(key: key);
+class DashBoardDetailsPage extends StatefulWidget {
+  dynamic motivationasseturl;
 
+  DashBoardDetailsPage({this.motivationasseturl});
+
+  @override
+  State<DashBoardDetailsPage> createState() => _DashBoardDetailsPageState();
+}
+
+class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
+  Color selectedColor = Colors.white;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,127 +19,118 @@ class DashBoardDetailsPage extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         )),
         actions: <Widget>[
-          MaterialButton(
-            height: 10,
-            color: const Color(0xff022334),
-            textColor:Colors.white,
-            onPressed: () {},
-            child:const Text("Download",style: TextStyle(fontSize: 18),),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
-          ),
+          IconButton(onPressed: (){}, icon: Icon(Icons.download)),
         ],
           backgroundColor: const Color(0xff022334),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(3.0),
             child: Container(
-              height: 280,
-              color: Colors.grey,
+              height: 350,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(widget.motivationasseturl)),
+              ),
+
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Container(
-                          height: 80,
-                          width: 120,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 100,
-                            child: Wrap(
-                              children:const [
-                                Text(
-                                  'Classes Logo',
-                                  style: TextStyle(fontSize: 12, color: Colors.black),
-                                ),
-                              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10,top: 5),
+                    child: Row(
 
-                            ), //Text
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Container(
+                            height: 50,
+                            width: 50,
+                            color: Colors.white,
+                            child:Image.network(
+                                "https://www.freeiconspng.com/uploads/nike-logo-png-shoes-brand-17.png")
                           ),
                         ),
-                      ),
-                     const Spacer(),
-                      SizedBox(
-                        width: 250,
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Card(
-                            elevation: 15,
-                            semanticContainer: true,
-                            shadowColor: Colors.grey,
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
 
-                            child: Column(
-                              children:const [
-                                Padding(
-                                  padding: EdgeInsets.all(5.0),
-                                  child: Text("XYZ Coaching Classes",style:
-                                  TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16.0),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10,left: 5),
+
+                          child: Container(
+                            width: 315,
+                            child: Card(
+                              color: selectedColor,
+                              elevation: 0.8,
+                              semanticContainer: true,
+                              shadowColor: Colors.transparent,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10,top: 0),
+                                    child: Text("XYZ Coaching Classes",style:
+                                    TextStyle(color: selectedColor==Colors.black?Colors.white:Colors.black,fontWeight: FontWeight.bold,fontSize: 16.0),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 5,),
-                                Text("Appa Pada Malad East",style:
-                                TextStyle(color: Colors.black,fontSize: 14.0),),
-                                SizedBox(height: 5,),
-                                Text("Mumbai Maharashtra",style:
-                                TextStyle(color: Colors.black,fontSize: 14.0),),
 
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10,top: 0),
+                                    child: Text("Appa Pada Malad East",style:
+                                    TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 14.0),),
+                                  ),
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10,top: 0),
+                                    child: Text("Mumbai Maharashtra",style:
+                                    TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 14.0),),
+                                  ),
+
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
 
-                    ],
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 150,),
-                  Expanded(
-                      child: Card(
-                        elevation: 15,
-                        semanticContainer: true,
-                        shadowColor: Colors.grey,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child:const Center(
-                          child:  Text("Contact NUmber : 9769859062 / 9769859062 ",
-                            style:  TextStyle(color: Colors.black,fontSize: 16),),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15,left: 10,right: 10),
+                    child: Card(
+                      color: selectedColor,
+                      elevation: 15,
+                      semanticContainer: true,
+                      shadowColor: Colors.grey,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Center(
+                          child:  Text("Contact Number : 9769859062 / 9769859062 ",
+                            style:  TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 16),),
                         ),
                       ),
-
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          
+
           Row(
-            children: [
-              const Padding(
-                  padding: const EdgeInsets.all(8.0),
+            children:const [
+               Padding(
+                  padding:  EdgeInsets.all(8.0),
                   child: SizedBox(
-                    child: Text("Try Other",
+                    child: Text("Variation",
                     style: TextStyle(color: Colors.black,fontSize: 25.0,fontWeight: FontWeight.bold),),
                   ),
                 ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  color:const Color(0xff012132),
-
-                  onPressed: () {  },
-                  child:const Text("View All",style: TextStyle(color: Colors.white),),
-                ),
-              )
             ],
           ),
           Container(
@@ -142,28 +141,47 @@ class DashBoardDetailsPage extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap:(){
+                        setState(() {
+                          selectedColor = Colors.black;
+                        });
                         // Get.to(()=>StartQuizPage());
                       },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey,
+                          color: Colors.grey.shade400,
                         ),
-                        child:const Center(child:  Text("",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0),)),
+                        child: Center(child:  Container(
+                          color: Colors.black ,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("Try this",style:
+                            TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
+                          ),
+                        )),
                       ),
                     ),
                     InkWell(
                       onTap: (){
+                        setState(() {
+                          selectedColor = Colors.white;
+                        });
                         // Get.to(()=>const StartGamePage());
                       },
                       child: Container(
+
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey,
+                          color: Colors.grey.shade400,
                         ),
-                        child:const Center(child:  Text("",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0),)),
+                        child:Center(child:  Container(
+                          color: Colors.white ,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("Try this",style:
+                            TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),),
+                          ),
+                        )),
                       ),
                     ),
                     InkWell(
@@ -173,10 +191,10 @@ class DashBoardDetailsPage extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey,
+                          color: Colors.grey.shade400,
                         ),
-                        child:const Center(child:  Text("",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0),)),
+                        child:const Center(child:  Text("Try this",style:
+                        TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),)),
                       ),
                     ),
                     InkWell(
@@ -186,41 +204,15 @@ class DashBoardDetailsPage extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey,
+                          color: Colors.grey.shade400,
                         ),
-                        child:const Center(child:  Text("",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0),)),
+                        child:const Center(child:  Text("Try this",style:
+                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),)),
                       ),
                     ),
 
-                    InkWell(
-                      onTap: (){
-                        //Get.to(()=>OrderPointer());
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.grey,
-                        ),
-                        child:const Center(child:  Text("",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0),)),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        // Get.to(()=> GamePoint(dateTime: DateTime.now(),));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color:  Colors.grey,
-                        ),
-                        child:const Center(child:  Text("",style:
-                        TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0),)),
-                      ),
-                    ),
                   ],
-                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,mainAxisSpacing: 10,crossAxisSpacing: 10)
+                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,mainAxisSpacing: 10,crossAxisSpacing: 10)
               ),
             ),
           ),

@@ -8,6 +8,30 @@ import 'package:get/get.dart';
 
 class DashBoardPage extends StatelessWidget {
 
+  List<dynamic> motivalassets= [
+    "assets/motivational/motivational1.png",
+    "assets/motivational/motivational2.png",
+    "assets/motivational/motivational3.png",
+    "assets/motivational/motivational4.png",
+    "assets/motivational/motivational5.png",
+    "assets/motivational/motivational6.png",
+    "assets/motivational/motivational7.png",
+    "assets/motivational/motivational8.png",
+    "assets/motivational/motivational9.png",
+    "assets/motivational/motivational7.png",
+    "assets/motivational/motivational8.png",
+    "assets/motivational/motivational9.png",
+  ];
+
+  List<dynamic> upcomingfestivalassets= [
+    "assets/festival1.png",
+    "assets/festival2.png",
+    "assets/festival3.png",
+    "assets/festival4.png",
+    "assets/festival5.png",
+    "assets/festival6.png",
+    "assets/festival7.png",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +52,7 @@ class DashBoardPage extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +68,7 @@ class DashBoardPage extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 160,
+                height: 180,
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
@@ -53,17 +78,17 @@ class DashBoardPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0)),
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 5.0, vertical: 10.0),
-                      child: Image.network(
-                        "http://114.143.114.142:1002/uploads/SubCategory/Advanced.png",
+                          horizontal: 0.0, vertical: 10.0),
+                      child: Image.asset(
+                        upcomingfestivalassets[index],
                         fit: BoxFit.fill,
                       ),
                     );
                   },
                   autoplay: true,
-                  itemCount: 10,
-                  viewportFraction: 0.8,
-                  scale: 0.9,
+                  itemCount: upcomingfestivalassets.length,
+                  viewportFraction: 0.9,
+                  scale: 0.95,
                 ),
               ),
             ),
@@ -94,121 +119,41 @@ class DashBoardPage extends StatelessWidget {
               ],
             ),
             Container(
-              height: 300,
+              height: 250,
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GridView(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => DashBoardDetailsPage());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child:  ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/festival1.png",
-                            ),
+                  padding: const EdgeInsets.only(left: 10,right: 10),
+                  child:GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                      itemCount: upcomingfestivalassets.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10), itemBuilder: (context,index){
+                    if(index>=6){
+                      return SizedBox();
+                    }
+                    return  InkWell(
+                      onTap: () {
+                        Get.to(() => DashBoardDetailsPage(motivationasseturl: upcomingfestivalassets[index]));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey,
+                        ),
+                        child:ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.asset(
+                            upcomingfestivalassets[index],
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          // Get.to(()=>const StartGamePage());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/festival2.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //  Get.to(()=>OddOneOutGamePage());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/festival3.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //  Get.to(()=>DragableGame());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/festival4.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //Get.to(()=>OrderPointer());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child:ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/festival5.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          // Get.to(()=> GamePoint(dateTime: DateTime.now(),));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/festival6.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10)),
+                    );
+                  })
+
               ),
             ),
+
             Row(
               children: [
                 const Padding(
@@ -239,116 +184,35 @@ class DashBoardPage extends StatelessWidget {
               height: 300,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: GridView(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          // Get.to(()=>StartQuizPage());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/motivational/motivational1.png",
-                            ),
-                          ),
+                child:GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: motivalassets.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10), itemBuilder: (context,index){
+                      if(index>=6){
+                        return SizedBox();
+                      }
+                return  InkWell(
+                    onTap: () {
+                      Get.to(() => DashBoardDetailsPage(motivationasseturl: motivalassets[index]));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey,
+                      ),
+                      child:ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Image.asset(
+                          motivalassets[index],
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          // Get.to(()=>const StartGamePage());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child:ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/motivational/motivational2.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //  Get.to(()=>OddOneOutGamePage());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child:ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/motivational/motivational3.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //  Get.to(()=>DragableGame());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child:ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/motivational/motivational4.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //Get.to(()=>OrderPointer());
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/motivational/motivational5.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          // Get.to(()=> GamePoint(dateTime: DateTime.now(),));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/motivational/motivational6.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10)),
+                    ),
+                  );
+                })
+
               ),
             ),
           ],

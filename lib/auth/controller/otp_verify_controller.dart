@@ -23,6 +23,7 @@ class OtpVerifyController extends GetxController {
 
   void addotp(){
     otp = fieldOne.text+fieldTwo.text+fieldThree.text+fieldFour.text+fieldFive.text+fieldSix.text;
+    print(otp);
     isOtpVerifying = true;
     update();
 
@@ -45,6 +46,7 @@ class OtpVerifyController extends GetxController {
         update();
            if(verficationid!=null||verificationId!=""){
              Get.to(()=>OtpPage());
+
            }
 
         // Create a PhoneAuthCredential with the code

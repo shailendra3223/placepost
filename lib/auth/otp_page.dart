@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OtpPage extends GetView<OtpVerifyController> {
-OtpVerifyController controller = Get.find();
+OtpVerifyController controller = Get.put((OtpVerifyController()));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ OtpVerifyController controller = Get.find();
       appBar: AppBar(
         backgroundColor: const Color(0xff022334),
         elevation: 0.5,
-        title: Text("Verify OTP",style: GoogleFonts.fredokaOne(fontSize: 16,color: Colors.white),),
+        title: Text("Verify OTP",style: GoogleFonts.poppins(fontSize: 16,color: Colors.white,fontWeight: FontWeight.bold),),
       ),
       body: GetBuilder<OtpVerifyController>(
         builder: (value){
@@ -41,27 +41,28 @@ OtpVerifyController controller = Get.find();
               const SizedBox(
                 height: 30,
               ),
-              !value.isOtpVerifying?ElevatedButton(
+              !value.isOtpVerifying?MaterialButton(
+                color: Colors.white,
                   onPressed: () {
                     if(value.fieldOne.text.isNotEmpty&&value.fieldTwo.text.isNotEmpty&&value.fieldThree.text.isNotEmpty&&value.fieldFour.text.isNotEmpty&&value.fieldFive.text.isNotEmpty&&value.fieldSix.text.isNotEmpty){
                         value.addotp();
                         if(value.otp!=""||value.otp!=null){
-                          value.verifyotp();
+                          Get.to(()=>DashBoardPage());
+                          FocusManager.instance.primaryFocus?.unfocus();
+
+                          // value.verifyotp();
                         }
                     }
                    else{
-                      Get.snackbar("Error","Please Enter Otp Sent to Your Phone" );
+                      Get.snackbar("Error","Please Enter Otp Sent to Your Phone" ,backgroundColor: Colors.white,colorText: Colors.black);
                     }
                   },
-                  child:  Text('Submit',style: GoogleFonts.fredokaOne(color: Colors.white),)):Center(child: CircularProgressIndicator(color: Colors.white,),),
+                  child:  Text('Submit',style: GoogleFonts.poppins(color: Colors.black,fontWeight: FontWeight.bold),)):Center(child: CircularProgressIndicator(color: Colors.black,),),
               const SizedBox(
                 height: 30,
               ),
               // Display the entered OTP code
-              Text(
-                value.otp ?? 'Please enter OTP',
-                style: GoogleFonts.roboto(fontSize: 18,color: Colors.white),
-              )
+
             ],
           );
         },
