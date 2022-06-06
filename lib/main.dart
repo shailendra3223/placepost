@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:digitalmaster/dashboard_page.dart';
 import 'package:digitalmaster/spash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';

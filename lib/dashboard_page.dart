@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:digitalmaster/screen/dashboard_details_page.dart';
 import 'package:digitalmaster/screen/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +30,12 @@ class DashBoardPage extends StatelessWidget {
     "assets/festival5.png",
     "assets/festival6.png",
     "assets/festival7.png",
+  ];
+  List<dynamic> bannerImage= [
+    "assets/img/banner1.png",
+    "assets/img/banner2.png",
+    "assets/img/banner3.png",
+
   ];
   @override
   Widget build(BuildContext context) {
@@ -68,25 +73,19 @@ class DashBoardPage extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 180,
+                height: 220,
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      shadowColor: Colors.white,
-                      semanticContainer: true,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 0.0, vertical: 10.0),
+                    return ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
                       child: Image.asset(
-                        upcomingfestivalassets[index],
+                        bannerImage[index],
                         fit: BoxFit.fill,
                       ),
                     );
                   },
                   autoplay: true,
-                  itemCount: upcomingfestivalassets.length,
+                  itemCount: bannerImage.length,
                   viewportFraction: 0.9,
                   scale: 0.95,
                 ),

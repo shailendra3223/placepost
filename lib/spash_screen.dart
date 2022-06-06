@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:digitalmaster/auth/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:splashscreen/splashscreen.dart';
 
 class SpashScreen extends StatefulWidget {
   const SpashScreen({Key? key}) : super(key: key);
@@ -29,7 +27,7 @@ class _SpashScreenState extends State<SpashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration:const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage("assets/img/splash_screen.png"),

@@ -11,6 +11,7 @@ class DashBoardDetailsPage extends StatefulWidget {
 
 class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
   Color selectedColor = Colors.white;
+  bool select = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,8 +154,8 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                         ),
                         child: Center(child:  Container(
                           color: Colors.black ,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                            padding:  EdgeInsets.all(8.0),
                             child: Text("Try this",style:
                             TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
                           ),
@@ -176,8 +177,8 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                         ),
                         child:Center(child:  Container(
                           color: Colors.white ,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child:const Padding(
+                            padding:  EdgeInsets.all(8.0),
                             child: Text("Try this",style:
                             TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15.0),),
                           ),
