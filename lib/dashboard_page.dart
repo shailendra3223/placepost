@@ -41,19 +41,18 @@ class DashBoardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-            child: Text(
-          "Dashboard",
+        title:const Text(
+          "Welcome Back"+" Naresh",
           style: TextStyle(color: Colors.black),
-        )),
-        automaticallyImplyLeading: false,
+        ),
+
         leading: IconButton(
           color:const Color(0xff012132),
             onPressed: () {
             Get.to(()=>
             ProfilePage());
             },
-            icon:const Icon(Icons.logo_dev,size: 50,)),
+            icon:const Icon(Icons.account_circle_rounded,size: 40,)),
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
@@ -62,18 +61,10 @@ class DashBoardPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Card(
-              elevation: 15,
-              semanticContainer: true,
-              shadowColor: Colors.black12,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
               child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 220,
+                height: MediaQuery.of(context).size.height*0.25,
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index) {
                     return ClipRRect(
@@ -86,7 +77,7 @@ class DashBoardPage extends StatelessWidget {
                   },
                   autoplay: true,
                   itemCount: bannerImage.length,
-                  viewportFraction: 0.9,
+                  viewportFraction: 0.92,
                   scale: 0.95,
                 ),
               ),

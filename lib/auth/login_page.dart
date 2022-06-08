@@ -34,7 +34,7 @@ class LogInPage extends GetWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 20,),
+                 const SizedBox(height: 20,),
                   Center(child: Text("Log In",style: GoogleFonts.poppins(fontSize: 30,color: Colors.black,fontWeight: FontWeight.bold),)),
                   SizedBox(height: MediaQuery.of(context).size.height*0.05,),
                   Padding(

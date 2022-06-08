@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:digitalmaster/auth/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,43 +9,23 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../auth/controller/UpdateProfileController.dart';
 
-class ProfilePage extends StatefulWidget {
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
+class ProfilePage extends GetView {
 
-class _ProfilePageState extends State<ProfilePage> {
-  ImagePicker _imagePicker = ImagePicker();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late File _image;
   UpdateProfileController _controller = Get.put(UpdateProfileController());
 
-  _imgFromCamera() async {
-    final XFile? image = await _imagePicker.pickImage(
-        source: ImageSource.camera, imageQuality: 50
-    );
-
-    setState(() {
-      _image = image as File;
-    });
-  }
-
-  _imgFromGallery() async {
-    XFile? image = await  _imagePicker.pickImage(
-        source: ImageSource.gallery, imageQuality: 50
-    );
-
-    setState(() {
-      _image = image as File;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title:
       const Center(child: Text("Edit Profile")),
-        backgroundColor: Color(0xff012132),),
+        actions: <Widget>[
+          IconButton(onPressed: (){
+            Get.to(()=>LogInPage());
+          }, icon: Icon(Icons.logout_rounded)),
+        ],
+        backgroundColor:const Color(0xff012132),),
       body: GetBuilder<UpdateProfileController>(
         init: _controller,
         builder: (value){
@@ -75,10 +56,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       const  SizedBox(height: 50),
-                      const  Padding(
-                        padding:  EdgeInsets.all(8.0),
+                        Padding(
+                        padding:const  EdgeInsets.all(8.0),
                         child: TextField(
-                      decoration: InputDecoration(
+                          controller: value.nameController,
+                      decoration:const InputDecoration(
                       border: OutlineInputBorder(),
                 labelText: 'Name of Institute',
                 hintText: 'Name of Institute',
@@ -86,10 +68,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
                       const SizedBox(height: 10),
-                      const  Padding(
+                        Padding(
                         padding:  EdgeInsets.all(8.0),
                         child:  TextField(
-                          decoration: InputDecoration(
+                          controller:value.emailIdController,
+                          decoration:const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Email ID',
                             hintText: 'Email ID',
@@ -97,10 +80,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      const  Padding(
-                        padding:  EdgeInsets.all(8.0),
+                        Padding(
+                        padding:const  EdgeInsets.all(8.0),
                         child: TextField(
-                          decoration: InputDecoration(
+                          controller: value.mobileNumberController,
+                          decoration:const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Mobile No',
                             hintText: 'Mobile No',
@@ -108,10 +92,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       const  SizedBox(height: 5),
-                      const  Padding(
-                        padding:  EdgeInsets.all(8.0),
+                        Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: TextField(
-                          decoration: InputDecoration(
+                          controller: value.addressController,
+                          decoration:const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Address',
                             hintText: 'Address',
@@ -122,13 +107,28 @@ class _ProfilePageState extends State<ProfilePage> {
                       const  SizedBox(height: 15),
                       Text("Change Password",
                         style: GoogleFonts.poppins(color: Colors.black,fontSize: 16),),
-                      const  Padding(
-                        padding:  EdgeInsets.all(8.0),
+                      const  SizedBox(height: 15),
+                        Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: TextField(
-                          decoration: InputDecoration(
+                          controller: value.passwordcontroller,
+                          decoration:const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Change Password',
                             hintText: 'Change Password',
+                          ),
+                        ),
+                      ),
+
+                      const  SizedBox(height: 15),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          controller: value.passwordcontroller,
+                          decoration:const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Repeat Password',
+                            hintText: 'Repeat Password',
                           ),
                         ),
                       ),
@@ -175,14 +175,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       leading:  const Icon(Icons.photo_library),
                       title: const Text('Photo Library'),
                       onTap: () {
-                        _imgFromGallery();
+                        _controller.imgFromGallery();
                         Navigator.of(context).pop();
                       }),
                    ListTile(
                     leading:const  Icon(Icons.photo_camera),
                     title:const  Text('Camera'),
                     onTap: () {
-                      _imgFromCamera();
+                      _controller.imgFromCamera();
                       Navigator.of(context).pop();
                     },
                   ),

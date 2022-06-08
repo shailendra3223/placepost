@@ -26,12 +26,15 @@ class _SpashScreenState extends State<SpashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage("assets/img/splash_screen.png"),
-        )
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Container(
+        decoration:const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage("assets/img/splash_screen.png"),
+          )
+        ),
       ),
     );
 

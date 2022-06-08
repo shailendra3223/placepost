@@ -11,7 +11,7 @@ class DashBoardDetailsPage extends StatefulWidget {
 
 class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
   Color selectedColor = Colors.white;
-  bool select = false;
+  bool select = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +46,15 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 10),
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Colors.white,
-                            child:Image.network(
-                                "https://www.freeiconspng.com/uploads/nike-logo-png-shoes-brand-17.png")
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              color: Colors.white,
+                              child:Image.network(
+                                  "https://www.freeiconspng.com/uploads/nike-logo-png-shoes-brand-17.png")
+                            ),
                           ),
                         ),
 
@@ -59,13 +62,15 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                           padding: const EdgeInsets.only(bottom: 10,left: 5),
 
                           child: Container(
+
                             width: 315,
-                            child: Card(
+                            child:select?Card(
                               color: selectedColor,
                               elevation: 0.8,
                               semanticContainer: true,
                               shadowColor: Colors.transparent,
                               clipBehavior: Clip.antiAliasWithSaveLayer,
+
 
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,6 +96,28 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
 
                                 ],
                               ),
+                            ):Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10,top: 0),
+                                  child: Text("XYZ Coaching Classes",style:
+                                  TextStyle(color: selectedColor==Colors.white?Colors.white:Colors.white,fontWeight: FontWeight.bold,fontSize: 16.0),
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10,top: 0),
+                                  child: Text("Appa Pada Malad East",style:
+                                  TextStyle(color:  selectedColor==Colors.white?Colors.white:Colors.white,fontSize: 14.0),),
+                                ),
+
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10,top: 0),
+                                  child: Text("Mumbai Maharashtra",style:
+                                  TextStyle(color:  selectedColor==Colors.white?Colors.white:Colors.white,fontSize: 14.0),),
+                                ),
+
+                              ],
                             ),
                           ),
                         ),
@@ -101,11 +128,9 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15,left: 10,right: 10),
-                    child: Card(
+                    child: select?Card(
                       color: selectedColor,
-                      elevation: 15,
                       semanticContainer: true,
-                      shadowColor: Colors.grey,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
@@ -115,6 +140,12 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                           child:  Text("Contact Number : 9769859062 / 9769859062 ",
                             style:  TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 16),),
                         ),
+                      ),
+                    ):Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Center(
+                        child:  Text("Contact Number : 9769859062 / 9769859062 ",
+                          style:  TextStyle(color:  selectedColor==Colors.white?Colors.white:Colors.black,fontSize: 16),),
                       ),
                     ),
                   ),
@@ -187,7 +218,10 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                     ),
                     InkWell(
                       onTap: (){
-                        //  Get.to(()=>OddOneOutGamePage());
+                        setState(() {
+                          select=!select;
+                        });
+
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -200,7 +234,9 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                     ),
                     InkWell(
                       onTap: (){
-                        //  Get.to(()=>DragableGame());
+                        setState(() {
+                          select=!select;
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(
