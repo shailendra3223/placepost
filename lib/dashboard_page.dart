@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:digitalmaster/preferance/PrefsConst.dart';
+import 'package:digitalmaster/preferance/pref.dart';
 import 'package:digitalmaster/screen/dashboard_details_page.dart';
 import 'package:digitalmaster/screen/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +43,8 @@ class DashBoardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text(
-          "Welcome Back"+" Naresh",
+        title: Text(
+          Prefs.getString(PrefsConst.NAME)??"Welcome Back",maxLines: 1,
           style: TextStyle(color: Colors.black),
         ),
 

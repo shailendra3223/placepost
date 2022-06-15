@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:digitalmaster/preferance/PrefsConst.dart';
+import 'package:digitalmaster/preferance/pref.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardDetailsPage extends StatefulWidget {
   dynamic motivationasseturl;
 
-  DashBoardDetailsPage({this.motivationasseturl});
+  DashBoardDetailsPage({Key? key, this.motivationasseturl}) : super(key: key);
 
   @override
   State<DashBoardDetailsPage> createState() => _DashBoardDetailsPageState();
@@ -11,6 +15,7 @@ class DashBoardDetailsPage extends StatefulWidget {
 
 class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
   Color selectedColor = Colors.white;
+  Color textColor = Colors.black;
   bool select = true;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
           style: TextStyle(color: Colors.white),
         )),
         actions: <Widget>[
-          IconButton(onPressed: (){}, icon: Icon(Icons.download)),
+          IconButton(onPressed: (){}, icon:const Icon(Icons.download)),
         ],
           backgroundColor: const Color(0xff022334),
       ),
@@ -52,8 +57,12 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                               height: 50,
                               width: 50,
                               color: Colors.white,
-                              child:Image.network(
-                                  "https://www.freeiconspng.com/uploads/nike-logo-png-shoes-brand-17.png")
+                              child: Prefs.getString(PrefsConst.PROFILEPATH) != null?
+                                  Image.file(
+                                      File(Prefs.getString(PrefsConst.PROFILEPATH)!)):
+
+                              Image.network(
+                                "https://www.freeiconspng.com/uploads/nike-logo-png-shoes-brand-17.png")
                             ),
                           ),
                         ),
@@ -62,7 +71,6 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                           padding: const EdgeInsets.only(bottom: 10,left: 5),
 
                           child: Container(
-
                             width: 315,
                             child:select?Card(
                               color: selectedColor,
@@ -72,60 +80,15 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                               clipBehavior: Clip.antiAliasWithSaveLayer,
 
 
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10,top: 0),
-                                    child: Text("XYZ Coaching Classes",style:
-                                    TextStyle(color: selectedColor==Colors.black?Colors.white:Colors.black,fontWeight: FontWeight.bold,fontSize: 16.0),
-                                    ),
-                                  ),
-
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10,top: 0),
-                                    child: Text("Appa Pada Malad East",style:
-                                    TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 14.0),),
-                                  ),
-
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10,top: 0),
-                                    child: Text("Mumbai Maharashtra",style:
-                                    TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 14.0),),
-                                  ),
-
-                                ],
-                              ),
-                            ):Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10,top: 0),
-                                  child: Text("XYZ Coaching Classes",style:
-                                  TextStyle(color: selectedColor==Colors.white?Colors.white:Colors.white,fontWeight: FontWeight.bold,fontSize: 16.0),
-                                  ),
-                                ),
-
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10,top: 0),
-                                  child: Text("Appa Pada Malad East",style:
-                                  TextStyle(color:  selectedColor==Colors.white?Colors.white:Colors.white,fontSize: 14.0),),
-                                ),
-
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10,top: 0),
-                                  child: Text("Mumbai Maharashtra",style:
-                                  TextStyle(color:  selectedColor==Colors.white?Colors.white:Colors.white,fontSize: 14.0),),
-                                ),
-
-                              ],
-                            ),
+                              child:CoachingDetails(selectedColor:textColor ,),
+                            ):CoachingDetails(selectedColor:textColor ,)
                           ),
                         ),
 
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15,left: 10,right: 10),
                     child: select?Card(
@@ -134,20 +97,8 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Center(
-                          child:  Text("Contact Number : 9769859062 / 9769859062 ",
-                            style:  TextStyle(color:  selectedColor==Colors.black?Colors.white:Colors.black,fontSize: 16),),
-                        ),
-                      ),
-                    ):Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Center(
-                        child:  Text("Contact Number : 9769859062 / 9769859062 ",
-                          style:  TextStyle(color:  selectedColor==Colors.white?Colors.white:Colors.black,fontSize: 16),),
-                      ),
-                    ),
+                      child: ContactDetails(selectedColor: textColor,)
+                    ):ContactDetails(selectedColor: textColor,),
                   ),
                 ],
               ),
@@ -174,7 +125,9 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                     InkWell(
                       onTap:(){
                         setState(() {
+                          select=true;
                           selectedColor = Colors.black;
+                          textColor = Colors.white;
                         });
                         // Get.to(()=>StartQuizPage());
                       },
@@ -196,7 +149,9 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                     InkWell(
                       onTap: (){
                         setState(() {
+                          select=true;
                           selectedColor = Colors.white;
+                          textColor = Colors.black;
                         });
                         // Get.to(()=>const StartGamePage());
                       },
@@ -219,7 +174,9 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                     InkWell(
                       onTap: (){
                         setState(() {
-                          select=!select;
+                          select=false;
+                          selectedColor = Colors.transparent;
+                          textColor = Colors.black;
                         });
 
                       },
@@ -235,7 +192,9 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
                     InkWell(
                       onTap: (){
                         setState(() {
-                          select=!select;
+                          select= false;
+                          selectedColor = Colors.transparent;
+                          textColor = Colors.white;
                         });
                       },
                       child: Container(
@@ -257,4 +216,57 @@ class _DashBoardDetailsPageState extends State<DashBoardDetailsPage> {
       ),
     );
   }
+
 }
+class CoachingDetails extends StatelessWidget {
+  const CoachingDetails({Key? key,required this.selectedColor}) : super(key: key);
+
+  final Color selectedColor;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding:const EdgeInsets.only(left: 10,top: 0),
+          child: Text(Prefs.getString(PrefsConst.NAME)??"Classes Name",style:
+          TextStyle(color:
+          selectedColor,fontWeight: FontWeight.bold,fontSize: 16.0),
+          ),
+        ),
+
+        Padding(
+          padding:const EdgeInsets.only(left: 10,top: 0),
+          child: Text(Prefs.getString(PrefsConst.ADDRESS)??"Your Address",style:
+          TextStyle(color:  selectedColor,fontSize: 14.0),),
+        ),
+
+        // Padding(
+        //   padding:const EdgeInsets.only(left: 10,top: 0),
+        //   child: Text("Mumbai 400097",style:
+        //   TextStyle(color:  selectedColor,fontSize: 14.0),),
+        // ),
+
+      ],
+    );
+  }
+}
+
+class ContactDetails extends StatelessWidget {
+  const ContactDetails({Key? key,required this.selectedColor}) : super(key: key);
+  final Color selectedColor;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(3.0),
+      child: Center(
+        child:  Text('Contact Number : ${Prefs.getString(PrefsConst.MOBILE)??"9769859062/9769859062"}',
+          style:  TextStyle(color: selectedColor,fontSize: 16),),
+      ),
+    );
+  }
+}
+
+
