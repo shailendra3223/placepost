@@ -47,10 +47,9 @@ OtpVerifyController controller = Get.put((OtpVerifyController()));
                     if(value.fieldOne.text.isNotEmpty&&value.fieldTwo.text.isNotEmpty&&value.fieldThree.text.isNotEmpty&&value.fieldFour.text.isNotEmpty&&value.fieldFive.text.isNotEmpty&&value.fieldSix.text.isNotEmpty){
                         value.addotp();
                         if(value.otp!=""||value.otp!=null){
-                          Get.to(()=>DashBoardPage());
+                          /*Get.to(()=>DashBoardPage());*/
                           FocusManager.instance.primaryFocus?.unfocus();
-
-                          // value.verifyotp();
+                           value.verifyotp();
                         }
                     }
                    else{

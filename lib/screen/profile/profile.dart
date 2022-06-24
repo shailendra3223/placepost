@@ -150,7 +150,8 @@ class ProfilePage extends GetView {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 2,
                         validator: (value) {
                           return _controller.validateAddress(value!);
                         },
