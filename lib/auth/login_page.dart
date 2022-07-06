@@ -58,6 +58,7 @@ class LogInPage extends GetView<OtpVerifyController> {
                                   hintText: "+91 8999928828",
                                   border: OutlineInputBorder()
                               ),
+                              keyboardType: TextInputType.number,
                             ),
                           ),
                         ),

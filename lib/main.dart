@@ -16,8 +16,8 @@ void main()   async{
   await Firebase.initializeApp();
   await GetStorage.init();
   await Prefs.init();
-  await FlutterDownloader.initialize();
-
+  await FlutterDownloader.initialize(
+  );
   runApp( MyApp());
 }
 

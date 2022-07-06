@@ -50,6 +50,7 @@ OtpVerifyController controller = Get.put((OtpVerifyController()));
                           /*Get.to(()=>DashBoardPage());*/
                           FocusManager.instance.primaryFocus?.unfocus();
                            value.verifyotp();
+                           showAlertDialogForEvaluation(context);
                         }
                     }
                    else{
@@ -69,6 +70,44 @@ OtpVerifyController controller = Get.put((OtpVerifyController()));
       ),
     );
   }
+showAlertDialogForEvaluation(BuildContext context) {
+  Widget continueButton = Center(child: Padding(
+    padding: const EdgeInsets.only(left: 158.0),
+    child: MaterialButton(
+      color:const Color(0xff022334) ,
+      minWidth: MediaQuery.of(context).size.width*0.20,
+      height: 35,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)),
+      child:const Text("Submit",style: TextStyle(color: Colors.white),),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    ),
+  ));
+  AlertDialog alert = AlertDialog(
+    title:const Text("Enter Purchas Code"),
+    content:const TextField(
+      // focusNode: yourFocus,
+      // controller: yourTextController,
+      decoration:  InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: 'Code',
+      ),),
+    actions: [
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
 }
 
 
