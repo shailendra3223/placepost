@@ -65,10 +65,11 @@ class OtpVerifyController extends GetxController {
       box.write("isUserExists", value.user?.phoneNumber);
       isOtpVerifying = false;
       update();
-      Get.offAll(()=>  DashBoardPage());
+      // Get.offAll(()=>showAlertDialogForEvaluation());
+       Get.offAll(()=>  DashBoardPage());
     });
 
-  }
+  } 
 
   @override
   void onInit() {

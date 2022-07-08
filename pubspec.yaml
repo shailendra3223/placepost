@@ -50,7 +50,8 @@ dependencies:
   file_utils: ^1.0.1
   firebase_storage: ^10.3.1
   cloud_firestore: ^3.2.1
-
+  auto_validate: ^1.0.8
+  wc_form_validators: ^0.1.1
 
 dev_dependencies:
   flutter_test:

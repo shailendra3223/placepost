@@ -6,6 +6,7 @@ class PrefsConst {
   static const String MOBILE = "mobile";
   static const String ADDRESS = "address";
   static const String PROFILEPATH = "profilepath";
+  static const String Purchase_code = "purchase_code";
 
 
 }

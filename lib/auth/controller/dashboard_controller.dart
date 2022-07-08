@@ -1,71 +1,60 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-class DashBoardController extends GetxController{
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wc_form_validators/wc_form_validators.dart';
+import '../../model/category_model.dart';
+
+class DashBoardController extends GetxController {
   List<dynamic> category = [];
   List<dynamic> name = [];
+  List<CategoryName> category_name = [];
   bool isLoading = true;
+  bool puchase = false;
+
   @override
   void onInit() {
     super.onInit();
     getCategoryName();
-    getCategories();
-    getCategory();
-
   }
-  void setLoader(bool loading){
+
+  void setLoader(bool loading) {
     isLoading = loading;
     update();
   }
-  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
+
+
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   void getCategory() async {
     setLoader(true);
     var response =  await firebaseFirestore.collection("collection").get();
     for(var data in response.docs){
-      for(var ds in data.data().values){
-        setLoader(false);
-        for(var d in ds){
-          for(var n in name){
-            if(data.data().keys.contains(n)){
-    category.add(d);
-    print("asddasasd " +n);
-    }else{
-              category.remove(d);
-            }
-          }
+      final mainData = data.data();
+     mainData.forEach((key,value) {
+      final images = value as List;
+       CategoryName name = CategoryName(name:key , images: images.map((e) => e.toString()).toList());
+       category_name.add(name);
+     });
+      setLoader(false);
+     update();
 
-
-          // update();
-        }
-      }
-      update();
     }
-  }
-  
-  void getCategories() async {
-    var response = await FirebaseFirestore.instance.collection("collection").doc().get();
-    CollectionReference collectionReference = await FirebaseFirestore.instance.collection("collection").doc().collection(name.toString());
-
-    print("response $response");
-    print("collectionReference $collectionReference");
   }
 
   void getCategoryName() async {
     setLoader(true);
-    var response =  await firebaseFirestore.collection("collection").get();
-    for(var data in response.docs){
-      for(var dv in data.data().keys){
-      name.add(dv);
-      update();
+    var response = await firebaseFirestore.collection("collection").get();
+    for (var data in response.docs) {
+      for (var dv in data.data().keys) {
+        name.add(dv);
+        update();
       }
       getCategory();
       update();
     }
   }
-
 }
